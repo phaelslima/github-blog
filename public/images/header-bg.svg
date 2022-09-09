@@ -93,6 +93,9 @@
 <rect width="64" height="3" rx="1.5" transform="matrix(-1 0 0 1 1438 263)" fill="#1562AF" fill-opacity="0.34"/>
 <rect width="86" height="3" rx="1.5" transform="matrix(-1 0 0 1 1368 106)" fill="#1562AF" fill-opacity="0.14"/>
 <rect width="154" height="3" rx="1.5" transform="matrix(-1 0 0 1 1368 263)" fill="#1562AF" fill-opacity="0.14"/>
+<g filter="url(#filter2_f_401_609)">
+<rect x="272" y="235" width="891" height="52" fill="#14589C"/>
+</g>
 </g>
 <defs>
 <filter id="filter0_f_401_609" x="-530" y="-496" width="1036" height="1036" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
@@ -104,6 +107,11 @@
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
 <feGaussianBlur stdDeviation="184" result="effect1_foregroundBlur_401_609"/>
+</filter>
+<filter id="filter2_f_401_609" x="60" y="23" width="1315" height="476" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="106" result="effect1_foregroundBlur_401_609"/>
 </filter>
 <clipPath id="clip0_401_609">
 <rect width="1440" height="296" fill="white"/>
