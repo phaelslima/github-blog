@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import {
@@ -5,6 +6,8 @@ import {
   faBuilding,
   faUserGroup,
 } from '@fortawesome/free-solid-svg-icons'
+
+import { api } from '../../../../lib/axios'
 
 import {
   ProfileContainer,
@@ -14,17 +17,41 @@ import {
   InfoItem,
 } from './styles'
 
+interface User {
+  id: number
+  login: string
+  name: string
+  bio: string
+  company: string
+  followers: number
+}
+
 export function Profile() {
+  const [user, setUser] = useState<User>()
+
+  useEffect(() => {
+    async function fetchUser() {
+      const user = import.meta.env.VITE_GITHUB_USER_NAME
+
+      const response = await api.get(`users/${user}`)
+
+      const { data } = response
+      setUser(data)
+    }
+
+    fetchUser()
+  }, [])
+
   return (
     <ProfileContainer>
-      <img src="https://github.com/phaelslima.png" alt="" />
+      <img src={`https://github.com/${user?.login}.png`} alt="" />
 
       <ProfileContent>
         <ProfileHeader>
-          <h1>Raphael Lima</h1>
+          <h1>{user?.name}</h1>
 
           <a
-            href="https://github.com/phaelslima"
+            href={`https://github.com/${user?.login}`}
             target="_blank"
             rel="noreferrer"
           >
@@ -33,24 +60,27 @@ export function Profile() {
           </a>
         </ProfileHeader>
 
-        <p>
-          Desenvolvedor Full Stack - NodeJS • ReactJS • React Native •
-          Javascript • Typescript
-        </p>
+        <p>{user?.bio}</p>
 
         <Info>
           <InfoItem>
             <FontAwesomeIcon icon={faGithub} />
-            <span>phaelslima</span>
+            <span>{user?.login}</span>
           </InfoItem>
-          <InfoItem>
-            <FontAwesomeIcon icon={faBuilding} />
-            <span>Cidade Oferta</span>
-          </InfoItem>
-          <InfoItem>
-            <FontAwesomeIcon icon={faUserGroup} />
-            <span>0 seguidores</span>
-          </InfoItem>
+
+          {user?.company && (
+            <InfoItem>
+              <FontAwesomeIcon icon={faBuilding} />
+              <span>{user.company}</span>
+            </InfoItem>
+          )}
+
+          {!!user?.followers && (
+            <InfoItem>
+              <FontAwesomeIcon icon={faUserGroup} />
+              <span>{user.followers} seguidores</span>
+            </InfoItem>
+          )}
         </Info>
       </ProfileContent>
     </ProfileContainer>
