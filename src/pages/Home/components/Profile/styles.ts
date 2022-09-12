@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const ProfileContainer = styled.section`
   display: flex;
   align-items: center;
+  margin-bottom: 4.5rem;
   padding: 2rem;
   gap: 2rem;
 
