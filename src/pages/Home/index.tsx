@@ -8,7 +8,7 @@ import { Profile } from './components/Profile'
 import { SearchInput } from './components/SearchInput'
 import { PostCard } from './components/PostCard'
 
-import { HomeContainer, PostsContainer, PostList } from './styled'
+import { HomeContainer, PostsContainer, PostList } from './styles'
 
 interface Issue {
   id: number
