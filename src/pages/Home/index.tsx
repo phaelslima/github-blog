@@ -12,6 +12,7 @@ import { HomeContainer, PostsContainer, PostList } from './styled'
 
 interface Issue {
   id: number
+  number: number
   title: string
   body: string
   created_at: string
@@ -47,6 +48,10 @@ export function Home() {
   }
 
   useEffect(() => {
+    document.title = 'Github Blog'
+  }, [])
+
+  useEffect(() => {
     fetchIssues(search)
   }, [search])
 
@@ -70,6 +75,7 @@ export function Home() {
           {issues.map((item) => (
             <PostCard
               key={item.id}
+              number={item.number}
               title={item.title}
               body={item.body}
               createdAt={formatDistanceToNow(new Date(item.created_at), {
