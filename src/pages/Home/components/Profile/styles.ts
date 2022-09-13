@@ -17,6 +17,10 @@ export const ProfileContainer = styled.section`
 
     border-radius: 8px;
   }
+
+  @media screen and (max-width: 48rem) {
+    flex-direction: column;
+  }
 `
 export const ProfileContent = styled.div`
   flex: 1;
@@ -83,6 +87,10 @@ export const ProfileHeader = styled.header`
 export const Info = styled.div`
   display: flex;
   gap: 1.5rem;
+
+  @media screen and (max-width: 48rem) {
+    flex-direction: column;
+  }
 `
 
 export const InfoItem = styled.span`

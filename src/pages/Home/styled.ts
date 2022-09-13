@@ -36,4 +36,8 @@ export const PostList = styled.div`
   grid-template-columns: repeat(2, 1fr);
   margin: 3rem 0;
   gap: 2rem;
+
+  @media screen and (max-width: 48rem) {
+    grid-template-columns: 1fr;
+  }
 `

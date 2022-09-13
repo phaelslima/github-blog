@@ -60,6 +60,10 @@ export const Actions = styled.div`
 export const Info = styled.div`
   display: flex;
   gap: 1.5rem;
+
+  @media screen and (max-width: 48rem) {
+    flex-wrap: wrap;
+  }
 `
 
 export const InfoItem = styled.span`
