@@ -8,7 +8,7 @@ export const HeaderContainer = styled.header`
 
   height: 18.5rem;
 
-  background-image: url('images/header-bg.svg');
+  background-image: url('/images/header-bg.svg');
   background-repeat: no-repeat;
   background-size: cover;
 `
