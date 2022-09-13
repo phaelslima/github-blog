@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
-import { Profile } from './components/Profile'
-import { PostCard } from './components/PostCard'
-
 import { api } from '../../lib/axios'
+
+import { Profile } from './components/Profile'
+import { SearchInput } from './components/SearchInput'
+import { PostCard } from './components/PostCard'
 
 import { HomeContainer, PostsContainer, PostList } from './styled'
 
@@ -17,30 +18,54 @@ interface Issue {
 }
 
 export function Home() {
+  const [search, setSearch] = useState('')
   const [issues, setIssues] = useState<Issue[]>([])
 
-  async function fetchIssues() {
+  async function fetchIssues(query?: string) {
     const user = import.meta.env.VITE_GITHUB_USER_NAME
     const repo = import.meta.env.VITE_GITHUB_REPO_NAME
 
-    const url = `repos/${user}/${repo}/issues`
+    let url = ''
+
+    if (query) {
+      url = `search/issues?q=${encodeURIComponent(
+        query,
+      )}%20repo:${user}/${repo}`
+    } else {
+      url = `repos/${user}/${repo}/issues`
+    }
 
     const response = await api.get(url)
 
     const { data } = response
 
-    setIssues(data)
+    if (query) {
+      setIssues(data.items)
+    } else {
+      setIssues(data)
+    }
   }
 
   useEffect(() => {
-    fetchIssues()
-  }, [])
+    fetchIssues(search)
+  }, [search])
 
   return (
     <HomeContainer>
       <Profile />
 
       <PostsContainer>
+        <header>
+          <h2>Publicações</h2>
+          <span>{issues.length} publicações</span>
+        </header>
+
+        <SearchInput
+          type="text"
+          placeholder="Buscar conteúdo"
+          onChange={(e) => setSearch(e.target.value)}
+        />
+
         <PostList>
           {issues.map((item) => (
             <PostCard
